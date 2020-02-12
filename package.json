@@ -1,0 +1,44 @@
+{
+	"name": "telegram-bot-server",
+	"version": "1.0.0",
+	"description": "Webserver for Telegram Bot API communication",
+	"main": "./dist/index.js",
+	"author": "Lars Wächter <lars97.waechter@gmail.com>",
+  "private": true,
+  "repository": {
+		"url": "https://github.com/larswaechter/telegram-bot-server"
+	},
+	"scripts": {
+		"start": "node ./dist/index.js",
+		"build": "rm -rf dist && tsc -p tsconfig.json",
+		"watch": "nodemon --exec \"npm run build && npm run start\" --watch src --ext ts",
+		"lint": "tslint -p tsconfig.json",
+		"prettier": "prettier --config ./.prettierrc --write src/**/*.ts"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.2",
+		"@types/helmet": "^0.0.45",
+		"@types/mongodb": "^3.3.16",
+		"@types/mongoose": "^5.7.1",
+		"@types/node-telegram-bot-api": "^0.40.2",
+		"nodemon": "^2.0.2",
+		"prettier": "^1.19.1",
+		"reflect-metadata": "^0.1.13",
+		"source-map-support": "^0.5.16",
+		"tslint": "^6.0.0",
+		"tslint-config-airbnb": "^5.11.2",
+		"tslint-config-prettier": "^1.18.0",
+		"typescript": "^3.7.5"
+	},
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"helmet": "^3.21.2",
+		"mongodb": "^3.5.3",
+		"mongoose": "^5.8.11",
+		"node-telegram-bot-api": "^0.40.0",
+		"winston": "^3.2.1"
+	}
+}
