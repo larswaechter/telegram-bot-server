@@ -2,6 +2,8 @@ import nodeTelegramBotApi from 'node-telegram-bot-api';
 
 import { globals } from '../../config/variables';
 
+import { PingCommand } from './commands/ping';
+
 export class TelegramApi {
 	private name: string = globals.bot.name;
 	private bot: nodeTelegramBotApi = new nodeTelegramBotApi(globals.keys.telegram, { polling: true });
@@ -15,8 +17,11 @@ export class TelegramApi {
 	 */
 	private registerChatCommands(): void {
 		/**
-		 * TODO: Enter chat commands here
+		 * TODO: Register chat commands here
 		 */
+		new PingCommand().register(this.bot);
+
+		// Welcome message
 		this.startChat();
 	}
 
