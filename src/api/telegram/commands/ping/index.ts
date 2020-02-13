@@ -1,4 +1,5 @@
 import nodeTelegramBotApi from 'node-telegram-bot-api';
+
 import { ICommand, AbstractCommand } from '../AbstractCommand';
 
 /**
@@ -6,11 +7,11 @@ import { ICommand, AbstractCommand } from '../AbstractCommand';
  */
 
 export class PingCommand extends AbstractCommand implements ICommand {
-	command: RegExp = /\/ping/;
+	public constructor(bot: nodeTelegramBotApi) {
+		super(bot, /\/ping/);
+	}
 
-	public register(bot: nodeTelegramBotApi): void {
-		bot.onText(this.command, async (msg) => {
-			bot.sendMessage(msg.chat.id, 'PING BACK!');
-		});
+	public action(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
+		this.bot.sendMessage(msg.chat.id, 'PING BACK!');
 	}
 }

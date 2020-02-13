@@ -4,8 +4,8 @@
 	"description": "Webserver for Telegram Bot API communication",
 	"main": "./dist/index.js",
 	"author": "Lars Wächter <lars97.waechter@gmail.com>",
-  "private": true,
-  "repository": {
+	"private": true,
+	"repository": {
 		"url": "https://github.com/larswaechter/telegram-bot-server"
 	},
 	"scripts": {
@@ -33,6 +33,7 @@
 		"typescript": "^3.7.5"
 	},
 	"dependencies": {
+		"decko": "^1.2.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"helmet": "^3.21.2",

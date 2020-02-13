@@ -8,7 +8,6 @@ config();
 
 import { Application } from 'express';
 import { createServer, Server } from 'http';
-import { MongoError } from 'mongodb';
 import { connect } from 'mongoose';
 
 import { logger } from './config/logger';
@@ -17,18 +16,11 @@ import { globals } from './config/variables';
 import { ExpressServer } from './api/rest/server';
 
 // Connect to database
-connect(
-	globals.database.url,
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	},
-	(err: MongoError) => {
-		if (err) {
-			logger.error(err.message);
-			throw err;
-		}
-
+connect(globals.database.url, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
+	.then(() => {
 		// Init express server
 		const app: Application = new ExpressServer().app;
 		const server: Server = createServer(app);
@@ -38,5 +30,7 @@ connect(
 		});
 
 		server.listen(globals.port);
-	}
-);
+	})
+	.catch((err) => {
+		logger.error(err);
+	});

@@ -8,6 +8,8 @@ export class TelegramApi {
 	private name: string = globals.bot.name;
 	private bot: nodeTelegramBotApi = new nodeTelegramBotApi(globals.keys.telegram, { polling: true });
 
+	public static clients: (string | undefined)[] = globals.bot.clients;
+
 	public constructor() {
 		this.registerChatCommands();
 	}
@@ -16,10 +18,7 @@ export class TelegramApi {
 	 * Register Telegram commands
 	 */
 	private registerChatCommands(): void {
-		/**
-		 * TODO: Register chat commands here
-		 */
-		new PingCommand().register(this.bot);
+		new PingCommand(this.bot).register();
 
 		// Welcome message
 		this.startChat();
@@ -29,7 +28,7 @@ export class TelegramApi {
 	 * Triggered on chat opening with bot
 	 */
 	private startChat(): void {
-		const startMsg = `Hello! My name is ${this.name}. How can I help you?`;
+		const startMsg: string = `Hello! My name is ${this.name}. How can I help you?`;
 
 		this.bot.onText(/\/start/, (msg) => {
 			this.bot.sendMessage(msg.chat.id, startMsg);
