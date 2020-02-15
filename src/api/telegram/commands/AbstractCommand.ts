@@ -39,7 +39,7 @@ export abstract class AbstractCommand {
 	 */
 	@bind
 	private authorize(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
-		if (this.doAuthorization && TelegramApi.clients.includes(msg.chat.id.toString())) {
+		if (!this.doAuthorization || (this.doAuthorization && TelegramApi.clients.includes(msg.chat.id.toString()))) {
 			return this.exec(msg, match);
 		}
 
