@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { TelegramApi } from '../telegram';
-import { registerMiddleware, registerErrorHandler } from './middleware';
+import { TelegramApi } from './telegram';
+import { registerMiddleware, registerErrorHandler } from './rest/middleware';
 
 export class ExpressServer {
 	private readonly _app: express.Application = express();

@@ -13,7 +13,7 @@ import { connect } from 'mongoose';
 import { logger } from './config/logger';
 import { globals } from './config/variables';
 
-import { ExpressServer } from './api/rest/server';
+import { ExpressServer } from './api/server';
 
 // Connect to database
 connect(globals.database.url, {

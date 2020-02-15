@@ -11,7 +11,7 @@ export class PingCommand extends AbstractCommand implements ICommand {
 		super(bot, /\/ping/);
 	}
 
-	public action(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
+	public exec(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
 		this.bot.sendMessage(msg.chat.id, 'PING BACK!');
 	}
 }

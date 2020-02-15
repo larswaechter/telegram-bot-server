@@ -1,7 +1,7 @@
 {
 	"name": "telegram-bot-server",
 	"version": "1.0.0",
-	"description": "Webserver for Telegram Bot API communication",
+	"description": "An extendable webserver for communication with the Telegram Bot API",
 	"main": "./dist/index.js",
 	"author": "Lars Wächter <lars97.waechter@gmail.com>",
 	"private": true,
@@ -33,6 +33,7 @@
 		"typescript": "^3.7.5"
 	},
 	"dependencies": {
+		"axios": "^0.19.2",
 		"decko": "^1.2.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",

@@ -4,41 +4,43 @@ import { bind } from 'decko';
 import { TelegramApi } from '..';
 
 export interface ICommand {
-	action(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void;
+	exec(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void;
 }
 
 export abstract class AbstractCommand {
 	protected bot: nodeTelegramBotApi;
 	private command: RegExp;
+	private doAuthorization: boolean;
 
-	public constructor(bot: nodeTelegramBotApi, command: RegExp) {
+	public constructor(bot: nodeTelegramBotApi, command: RegExp, doAuthorization: boolean = true) {
 		this.bot = bot;
 		this.command = command;
+		this.doAuthorization = doAuthorization;
 	}
 
 	public register(): void {
-		this.bot.onText(this.command, this.isAuthorized);
+		this.bot.onText(this.command, this.authorize);
 	}
 
 	/**
-	 * Command action
+	 * Execute command
 	 * Must be overridden in child class
 	 *
 	 * @param msg
 	 * @param match
 	 */
-	public abstract action(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void;
+	public abstract exec(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void;
 
 	/**
-	 * Authorize bot user
+	 * Authorize bot user and call action
 	 *
 	 * @param msg Telegram Message
 	 * @param match Telegram Message Match
 	 */
 	@bind
-	private isAuthorized(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
-		if (TelegramApi.clients.includes(msg.chat.id.toString())) {
-			return this.action(msg, match);
+	private authorize(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
+		if (this.doAuthorization && TelegramApi.clients.includes(msg.chat.id.toString())) {
+			return this.exec(msg, match);
 		}
 
 		this.bot.sendMessage(msg.chat.id, 'User not authorized!');
