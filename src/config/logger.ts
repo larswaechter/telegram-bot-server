@@ -13,15 +13,6 @@ if (!existsSync(logDir)) {
 
 // Logfiles
 const errorLog: string = join(logDir, 'errors.log');
-const chatLog: string = join(logDir, 'chats.log');
-
-// Used to identify chat logging
-const isChatMsg = format((info, opts) => {
-	if (info.isChatMsg) {
-		return info;
-	}
-	return false;
-});
 
 export const logger: Logger = createLogger({
 	format: format.combine(
@@ -35,10 +26,6 @@ export const logger: Logger = createLogger({
 		new transports.File({
 			filename: errorLog,
 			level: 'error'
-		}),
-		new transports.File({
-			filename: chatLog,
-			format: format.combine(isChatMsg())
 		})
 	]
 });

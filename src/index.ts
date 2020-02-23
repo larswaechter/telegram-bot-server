@@ -26,7 +26,7 @@ connect(globals.database.url, {
 		const server: Server = createServer(app);
 
 		server.on('listening', () => {
-			logger.info(`${globals.bot.name} telegram-bot-server is running on port ${globals.port} in ${globals.env} mode`);
+			logger.info(`${globals.bot.name} is running on port ${globals.port} in ${globals.env} mode`);
 		});
 
 		server.listen(globals.port);

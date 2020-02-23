@@ -4,12 +4,13 @@ An extendable webserver for communication with the Telegram Bot API.
 
 ## Description
 
-telegram-bot-server is a Node.js powered webserver with MongoDB integration for running your own [Telegram Bot](https://core.telegram.org/bots) as well as a REST API. With the help of Telegram bots you can do a lot of awesome and useful things.
+telegram-bot-server is a Node.js powered webserver with MongoDB integration for running your own [Telegram Bot](https://core.telegram.org/bots) as well as a REST API. With the help of Telegram bots you can do quite a lot of useful things.
 
 Just to give some examples:
 
 - Gathering weather information based on your location
-- Fetching arrival / depatures times of public transportation
+- Fetching arrival / departure times of public transportation
+- Sending automated messages
 - IoT
 
 You can make your bot public for other users or just use it for private purposes.
@@ -23,6 +24,7 @@ See the `Commands` section for more information.
 - Node.js
 - MongoDB
 - Telegram Bot
+- Internet connection
 
 ## Installation
 
@@ -46,15 +48,11 @@ yarn build
 yarn start
 ```
 
-## Usage
-
-WIP
-
 ## Commands
 
-The following describes how you can create and add an own command to the current system. Commands are triggered via the Telegram chat by sending `/YourCommand` to your bot.
+The following describes how you can integrate a new command into the existing system. Commands are triggered via the Telegram chat by sending `/YourCommand` to your bot.
 
-You can find more information about Telegram bots and commands [here](https://core.telegram.org/bots) and [here](https://core.telegram.org/bots#commands).
+You can find more information about Telegram bots and commands [here](https://core.telegram.org/bots).
 
 ---
 

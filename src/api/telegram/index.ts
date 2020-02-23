@@ -8,6 +8,7 @@ export class TelegramApi {
 	private name: string = globals.bot.name;
 	private bot: nodeTelegramBotApi = new nodeTelegramBotApi(globals.keys.telegram, { polling: true });
 
+	// Array of Chat IDs for authorized users
 	public static clients: (string | undefined)[] = globals.bot.clients;
 
 	public constructor() {

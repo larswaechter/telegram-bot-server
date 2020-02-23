@@ -10,12 +10,17 @@ export interface ICommand {
 export abstract class AbstractCommand {
 	protected bot: nodeTelegramBotApi;
 	private command: RegExp;
-	private doAuthorization: boolean;
+	private doAuthentication: boolean;
 
-	public constructor(bot: nodeTelegramBotApi, command: RegExp, doAuthorization: boolean = true) {
+	/**
+	 * @param bot nodeTelegramBotApi instance
+	 * @param command Regex that matches the command
+	 * @param doAuthentication Do authentication for user
+	 */
+	public constructor(bot: nodeTelegramBotApi, command: RegExp, doAuthentication: boolean = true) {
 		this.bot = bot;
 		this.command = command;
-		this.doAuthorization = doAuthorization;
+		this.doAuthentication = doAuthentication;
 	}
 
 	public register(): void {
@@ -32,14 +37,14 @@ export abstract class AbstractCommand {
 	public abstract exec(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void;
 
 	/**
-	 * Authorize bot user and call action
+	 * Authorize bot user and bot command action
 	 *
 	 * @param msg Telegram Message
 	 * @param match Telegram Message Match
 	 */
 	@bind
 	private authorize(msg: nodeTelegramBotApi.Message, match: RegExpExecArray | null): void {
-		if (!this.doAuthorization || (this.doAuthorization && TelegramApi.clients.includes(msg.chat.id.toString()))) {
+		if (!this.doAuthentication || (this.doAuthentication && TelegramApi.clients.includes(msg.chat.id.toString()))) {
 			return this.exec(msg, match);
 		}
 

@@ -1,6 +1,6 @@
 export const globals = {
 	bot: {
-		name: 'Jarvis',
+		name: 'telegram-bot-server',
 		clients: [process.env.TELEGRAM_CHAT_ID]
 	},
 	database: {
