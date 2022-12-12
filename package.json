@@ -36,7 +36,7 @@
 		"axios": "^0.19.2",
 		"decko": "^1.2.0",
 		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
+		"express": "^4.17.3",
 		"helmet": "^3.21.2",
 		"mongodb": "^3.5.3",
 		"mongoose": "^5.8.11",
